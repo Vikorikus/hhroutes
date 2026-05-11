@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script type="text/javascript">
+      var l = window.location;
+
+      var path = l.pathname.split("/").slice(2).join("/");
+      var search = l.search ? l.search.replace(/&/g, "~and~") : "";
+      var query = "?p=/" + path + search + l.hash;
+
+      l.replace(
+        l.protocol +
+          "//" +
+          l.hostname +
+          (l.port ? ":" + l.port : "") +
+          "/hhappclone/" +
+          query,
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
