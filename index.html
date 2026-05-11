@@ -11,8 +11,11 @@
         if (l.search.startsWith("?p=/")) {
           var fullPath = l.search.slice(3).replace(/~and~/g, "&");
 
-          var newUrl =
-            l.pathname.slice(0, l.pathname.lastIndexOf("/")) + fullPath;
+          var repoPath = l.pathname.endsWith("/")
+            ? l.pathname.slice(0, -1)
+            : l.pathname;
+
+          var newUrl = repoPath + fullPath;
 
           window.history.replaceState(null, null, newUrl);
         }
