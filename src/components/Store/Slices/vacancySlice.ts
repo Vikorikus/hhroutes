@@ -34,7 +34,7 @@ export const fetchVacancies = createAsyncThunk(
   "vacancies/fetchAll",
   async (arg: FetchVacanciesArgs, { rejectWithValue }) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 600));
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
       let filteredItems = [...mockVacanciesResponse.items];
 
@@ -117,6 +117,9 @@ const VacancySlice = createSlice({
     setPage: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
+    clearVacancies: (state) => {
+      state.list = [];
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -154,5 +157,6 @@ const VacancySlice = createSlice({
   },
 });
 
-export const { setPage } = VacancySlice.actions;
+export const { setPage, clearVacancies } = VacancySlice.actions;
+
 export default VacancySlice.reducer;

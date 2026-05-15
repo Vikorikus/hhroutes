@@ -11,7 +11,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams, useParams, useNavigate } from "react-router-dom";
 import type { RootState, AppDispatch } from "../Store/store";
-import { fetchVacancies } from "../Store/Slices/vacancySlice";
+import { fetchVacancies, clearVacancies } from "../Store/Slices/vacancySlice";
 import { VacancyCard } from "../VacancyCard/VacancyCard";
 import { areaMap } from "../../Types/areas";
 import { NotFoundPage } from "../NotFoundPage/NotFoundPage";
@@ -31,7 +31,7 @@ export const VacancyList = () => {
 
   useEffect(() => {
     if (city && !VALID_CITIES.includes(city)) return;
-
+    dispatch(clearVacancies());
     const currentCity = city || "moscow";
     const textFromUrl = searchParams.get("text") || "";
     const skillsParam = searchParams.get("skills");
